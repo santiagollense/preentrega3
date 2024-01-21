@@ -4,12 +4,10 @@
 
 # resumen del proyecto
 
-- resumen
+- administracion y control de gimnacios y clientes
 
 # pasos para ejecutar el proyecto
 
-- link de github
+- https://github.com/santiagollense/preentrega3.git
 
-- las dependencias que se usaron
-
-- como ejecutar la app web en el servidor local
+- django
