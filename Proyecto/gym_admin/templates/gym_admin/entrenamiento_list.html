@@ -1,0 +1,12 @@
+{% extends 'gym_admin/base.html' %}
+
+{% block contenido %}
+    
+    {% for entrenamiento in Entrenamientos %}
+        <ul>
+            <li>
+                {{entrenamiento.entrenamiento}}
+            </li>
+        </ul>
+    {% endfor %}
+{% endblock contenido %}

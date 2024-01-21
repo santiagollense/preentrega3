@@ -1,0 +1,16 @@
+{% extends 'gym_admin/base.html' %}
+
+{% block contenido %}
+    
+    {% for gymbroporturno in PlanesGymBro %}
+        <ul>
+            <li>
+                {{gymbroporturno.turno}}
+                {{gymbroporturno.gymbro}}
+                {{gymbroporturno.entrenamiento}}
+                {{gymbroporturno.plan}}
+                {{gymbroporturno.rutina}}
+            </li>
+        </ul>
+    {% endfor %}
+{% endblock contenido %}

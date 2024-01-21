@@ -1,0 +1,15 @@
+{% extends 'gym_admin/base.html' %}
+
+{% block contenido %}
+    
+    {% for rutina in Rutinas %}
+        <ul>
+            <li>
+                {{rutina.plan}}
+                {{rutina.rutina}}
+                {{rutina.repeticiones}}
+                {{rutina.series}}
+            </li>
+        </ul>
+    {% endfor %}
+{% endblock contenido %}

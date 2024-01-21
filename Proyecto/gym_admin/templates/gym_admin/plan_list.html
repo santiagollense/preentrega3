@@ -1,0 +1,12 @@
+{% extends 'gym_admin/base.html' %}
+
+{% block contenido %}
+    
+    {% for plan in Planes %}
+        <ul>
+            <li>
+                {{plan.plan}}
+            </li>
+        </ul>
+    {% endfor %}
+{% endblock contenido %}

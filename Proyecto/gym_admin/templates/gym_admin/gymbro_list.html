@@ -1,0 +1,14 @@
+{% extends 'gym_admin/base.html' %}
+
+{% block contenido %}
+    
+    {% for gymbro in Gymbros %}
+        <ul>
+            <li>
+                {{gymbro.nombre}}
+                {{gymbro.tel}}
+                {{gymbro.email}}
+            </li>
+        </ul>
+    {% endfor %}
+{% endblock contenido %}

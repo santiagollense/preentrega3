@@ -1,0 +1,15 @@
+{% extends 'gym_admin/base.html' %}
+
+{% block contenido %}
+    
+    {% for gym in Gimnasios %}
+        <ul>
+            <li>
+                {{gym.nombre}}
+                {{gym.dir}}
+                {{gym.tel}}
+                {{gym.email}}
+            </li>
+        </ul>
+    {% endfor %}
+{% endblock contenido %}

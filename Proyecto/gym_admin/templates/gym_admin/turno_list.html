@@ -1,0 +1,12 @@
+{% extends 'gym_admin/base.html' %}
+
+{% block contenido %}
+    
+    {% for turno in Turnos %}
+        <ul>
+            <li>
+                {{turno.turno}}
+            </li>
+        </ul>
+    {% endfor %}
+{% endblock contenido %}
