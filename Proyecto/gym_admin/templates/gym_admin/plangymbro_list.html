@@ -1,6 +1,6 @@
 {% extends 'gym_admin/base.html' %}
 
-{% block contenido %}
+{% block content %}
     
     {% for gymbroporturno in PlanesGymBro %}
         <ul>
@@ -13,4 +13,5 @@
             </li>
         </ul>
     {% endfor %}
-{% endblock contenido %}
+    <button><a href="{% url 'plangymbro_form' %}">Cargar Plan de GymBro</a></button>
+{% endblock content %}

@@ -1,6 +1,6 @@
 {% extends 'gym_admin/base.html' %}
 
-{% block contenido %}
+{% block content %}
     
     {% for gymbro in Gymbros %}
         <ul>
@@ -11,4 +11,8 @@
             </li>
         </ul>
     {% endfor %}
-{% endblock contenido %}
+
+    <button><a href="{% url 'gymbro_form' %}">Cargar GymBros</a></button>
+    
+    
+{% endblock content %}

@@ -2,6 +2,13 @@ from django import forms
 
 from . import models
 
+from django.contrib.auth.forms import AuthenticationForm
+
+class CustomLoginForm(AuthenticationForm):
+    # username = forms.CharField(label="Username", max_length=30)
+    # password = forms.CharField(label="Password", max_length=30)
+    pass    
+
 class GymForm(forms.ModelForm):
     class Meta:
         model = models.Gym

@@ -1,0 +1,14 @@
+{% extends 'gym_admin/base.html' %}
+
+{% block content %}
+    <h2>Admin</h2>
+
+    <button><a href="{% url 'gym_list' %}">Ver Gimnasios</a></button>
+    <button><a href="{% url 'gymbro_list' %}">Ver GymBros</a></button>
+    <button><a href="{% url 'turno_list' %}">Ver Turnos</a></button>
+    <button><a href="{% url 'entrenamiento_list' %}">Ver Entrenamientos</a></button>
+    <button><a href="{% url 'plan_list' %}">Ver Planes</a></button>
+    <button><a href="{% url 'rutina_list' %}">Ver Rutinas</a></button>
+    <button><a href="{% url 'plangymbro_list' %}">Ver Plan de GymBro</a></button>
+    
+{% endblock content %}

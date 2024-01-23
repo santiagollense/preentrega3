@@ -1,10 +1,10 @@
 {% extends 'gym_admin/base.html' %}
 
-{% block contenido %}
+{% block content %}
     <form method="post">
         {% csrf_token %}
         {{ form }}
         <button type="submit">Guardar</button>
     </form>
     
-{% endblock contenido %}
+{% endblock content %}

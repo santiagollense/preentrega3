@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class Gym(models.Model):
     nombre = models.CharField(max_length=100)
@@ -12,10 +13,12 @@ class Gym(models.Model):
 class Gymbro(models.Model):
     nombre = models.CharField(max_length=100)
     dni = models.CharField(max_length=9)
+    fecha_nac = models.DateField(null=True, blank=True)
+    inicio_act = models.DateField(default=timezone.now, editable=False, verbose_name="Fecha de inicio de actividad")
     dir = models.CharField(max_length=200)
     tel = models.CharField(max_length=14)
     email = models.EmailField()
-    os = models.CharField(max_length=100)
+    os = models.CharField(max_length=100, verbose_name="Obra Social")
 
     def __str__(self):
         return self.nombre

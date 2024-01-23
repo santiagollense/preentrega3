@@ -1,10 +1,35 @@
 from django.shortcuts import redirect, render
+from django.contrib.auth import authenticate, login as django_login
+from .forms import CustomLoginForm
 
 from . import models
 from . import forms
 
 def index(request):
     return render (request, "gym_admin/index.html")
+
+def login(request):
+    if request.method == 'POST':
+        form = CustomLoginForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                if user.is_staff:
+                    django_login(request, user)
+                    return redirect('admin')
+                else:
+                    django_login(request, user)
+                    return redirect('user')
+            else:
+                form.add_error(None, 'Credenciales inválidas')
+    else:
+        form = CustomLoginForm()
+    return render(request, 'gym_admin/login.html', {'form': form})
+    
+def admin(request):
+    return render (request, "gym_admin/admin.html")
 
 def gym_list(request):
     consulta = models.Gym.objects.all()
@@ -110,3 +135,4 @@ def plangymbro_form(request):
     else:
         form = forms.PlangymbroForm()
     return render (request, "gym_admin/plangymbro_form.html", {"form": form})
+

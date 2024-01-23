@@ -1,6 +1,6 @@
 {% extends 'gym_admin/base.html' %}
 
-{% block contenido %}
+{% block content %}
     
     {% for gym in Gimnasios %}
         <ul>
@@ -12,4 +12,6 @@
             </li>
         </ul>
     {% endfor %}
-{% endblock contenido %}
+
+    <button><a href="{% url 'gym_form' %}">Cargar Gimnasios</a></button>
+{% endblock content %}

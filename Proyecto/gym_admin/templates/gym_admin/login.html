@@ -1,0 +1,12 @@
+{% extends 'gym_admin/base.html' %}
+
+{% block content %}
+    <h2>Inicio de sesión</h2>
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Iniciar sesión</button>
+    </form>
+
+{% endblock content %}
