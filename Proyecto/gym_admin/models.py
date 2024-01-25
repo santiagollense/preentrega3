@@ -30,11 +30,7 @@ class Turno(models.Model):
     def __str__(self) -> str:
         return self.turno
     
-class Plan(models.Model):
-    plan = models.CharField(max_length=20)
 
-    def __str__(self) -> str:
-        return self.plan
     
 class Entrenamiento(models.Model):
     entrenamiento = models.CharField(max_length=100)
@@ -43,11 +39,17 @@ class Entrenamiento(models.Model):
     def __str__(self) -> str:
         return self.entrenamiento
     
+class Plan(models.Model):
+    plan = models.CharField(max_length=20)
+
+    def __str__(self) -> str:
+        return self.plan
+    
 class Rutina(models.Model):
-    plan = models.ForeignKey(Plan, on_delete=models.SET_NULL, null=True, blank=True)
+    plan = models.ForeignKey(Plan, on_delete=models.CASCADE, default=None, blank=True, null=True)
     rutina = models.CharField(max_length=100, default='', blank=True)
-    repeticiones = models.IntegerField()
-    series = models.IntegerField()
+    repeticiones = models.IntegerField(blank=True, null=True)
+    series = models.IntegerField(blank=True, null=True)
     
     def __str__(self) -> str:
         return f"{self.rutina} - {self.repeticiones} - {self.series}"
@@ -56,7 +58,7 @@ class GymbroporTurno(models.Model):
     turno = models.ForeignKey(Turno, on_delete=models.CASCADE)
     gymbro = models.ForeignKey(Gymbro, on_delete=models.CASCADE)
     entrenamiento = models.ForeignKey(Entrenamiento, on_delete=models.CASCADE, default=None, blank=True, null=True)
-    plan = models.ForeignKey(Plan, on_delete=models.CASCADE, default=None, blank=True, null=True)
+    rutina = models.ForeignKey(Rutina, on_delete=models.CASCADE, default=None, blank=True, null=True)
 
     def __str__(self) -> str:
-        return f"{self.gymbro} - {self.turno}: {self.entrenamiento} - {self.plan}"
+        return f"{self.gymbro} - {self.turno}: {self.entrenamiento} - {self.rutina.plan}"

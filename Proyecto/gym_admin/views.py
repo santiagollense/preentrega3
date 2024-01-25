@@ -18,7 +18,7 @@ def login(request):
             if user is not None:
                 if user.is_staff:
                     django_login(request, user)
-                    return redirect('admin')
+                    return redirect('gym_admin')
                 else:
                     django_login(request, user)
                     return redirect('user')
@@ -28,8 +28,8 @@ def login(request):
         form = CustomLoginForm()
     return render(request, 'gym_admin/login.html', {'form': form})
     
-def admin(request):
-    return render (request, "gym_admin/admin.html")
+def gym_admin(request):
+    return render (request, "gym_admin/gym_admin.html")
 
 def gym_list(request):
     consulta = models.Gym.objects.all()
