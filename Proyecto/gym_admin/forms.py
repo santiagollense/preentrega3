@@ -1,13 +1,26 @@
 from django import forms
-
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.models import User
 from . import models
 
-from django.contrib.auth.forms import AuthenticationForm
+class CustomAuthenticationForm(AuthenticationForm):
+    class Meta:
+        model = User
+        fields = ["username", "password"]
+        widgets = {
+            "username": forms.TextInput(attrs={"class": "form-control"}),
+            "password": forms.PasswordInput(attrs={"class": "form-control"}),
+        }
 
-class CustomLoginForm(AuthenticationForm):
-    # username = forms.CharField(label="Username", max_length=30)
-    # password = forms.CharField(label="Password", max_length=30)
-    pass    
+class CustomUserCreationForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ["username", "password1", "password2"]
+        widgets = {
+            "username": forms.TextInput(attrs={"class": "form-control"}),
+            "password1": forms.PasswordInput(attrs={"class": "form-control"}),
+            "password2": forms.PasswordInput(attrs={"class": "form-control"}),
+        }
 
 class GymForm(forms.ModelForm):
     class Meta:

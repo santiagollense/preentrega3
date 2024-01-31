@@ -20,7 +20,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ydl-rlcvg@92tp#)n8&)4gmsrdjg)yx!wb+29&o#c2k%sz6ci!'
+#SECRET_KEY = 'django-insecure-ydl-rlcvg@92tp#)n8&)4gmsrdjg)yx!wb+29&o#c2k%sz6ci!'
+
+from django.core.management.utils import get_random_secret_key
+
+SECRET_KEY = get_random_secret_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,8 +41,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+
+# Apps propias
+
+INSTALLED_APPS += [
     'gym_admin',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -122,3 +132,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = "/login/"
+LOGIN_REDIRECT_URL = 'index'  # o la URL a la que deseas redirigir después de iniciar sesión
+LOGOUT_URL = 'logout'
+
+LOGIN_TEMPLATE = 'gym_admin/login.html'
+LOGOUT_TEMPLATE = 'gym_admin/logout.html'
+REGISTER_TEMPLATE = 'gym_admin/register.html'

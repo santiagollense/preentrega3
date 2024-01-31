@@ -10,7 +10,11 @@
 
 {% block content %}
     
-
+    {% if user.is_staff %}
+    <div class="d-flex justify-content-center">
+        <a href="{% url 'gym_admin' %}" class="btn btn-info w-50">Administración</a></button>
+    </div>
+    {% endif %}
 
     <div class="row gx-4 gx-lg-5 align-items-center my-5">
         <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'gym_admin/img/logo.jpeg' %}" alt="..." /></div>

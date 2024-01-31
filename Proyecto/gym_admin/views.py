@@ -1,6 +1,7 @@
+from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login as django_login
-from .forms import CustomLoginForm
+from .forms import CustomAuthenticationForm, CustomUserCreationForm
 
 from . import models
 from . import forms
@@ -8,26 +9,23 @@ from . import forms
 def index(request):
     return render (request, "gym_admin/index.html")
 
-def login(request):
-    if request.method == 'POST':
-        form = CustomLoginForm(request, data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                if user.is_staff:
-                    django_login(request, user)
-                    return redirect('gym_admin')
-                else:
-                    django_login(request, user)
-                    return redirect('user')
-            else:
-                form.add_error(None, 'Credenciales inválidas')
-    else:
-        form = CustomLoginForm()
-    return render(request, 'gym_admin/login.html', {'form': form})
+class CustomLoginView(LoginView):
+    authentication_form = CustomAuthenticationForm
+    template_name = "gym_admin/login.html"
     
+def register(request):
+    print("dentro de la funcion register")
+    if request.method == "POST":
+        print("dentro de POST")
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            print("dentro de is_valid")
+            form.save()
+            return redirect("index")
+    else:  # if request.method == "GET":
+        form = CustomUserCreationForm()
+    return render(request, "gym_admin/index.html", {"form": form})
+
 def gym_admin(request):
     return render (request, "gym_admin/gym_admin.html")
 

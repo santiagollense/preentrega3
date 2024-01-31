@@ -1,10 +1,12 @@
+from django.contrib.auth.views import LogoutView
 from django.urls import path
 
+from .views import *
 from . import views
 
 urlpatterns = [
     path('', views.index, name="index"),
-    path('login', views.login, name="login"),
+    path("login/", CustomLoginView.as_view(), name="login"),
     path('gym_admin', views.gym_admin, name="gym_admin"),
     path('gym/list', views.gym_list, name="gym_list"),
     path('gym/form', views.gym_form, name="gym_form"),
@@ -20,4 +22,6 @@ urlpatterns = [
     path('rutina/form', views.rutina_form, name="rutina_form"),
     path('plangymbro/list', views.plangymbro_list, name="plangymbro_list"),
     path('plangymbro/form', views.plangymbro_form, name="plangymbro_form"),
+    path("logout/", LogoutView.as_view(template_name="gym_admin/logout.html"), name="logout"),
+    path("register/", views.register, name="register"),
 ]
